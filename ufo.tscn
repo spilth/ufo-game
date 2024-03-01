@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://o22ys2eyidp2"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_eqyss"]
+[ext_resource type="AudioStream" uid="uid://cgbljwl8po6u5" path="res://beam.wav" id="2_a6b5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xliyi"]
+size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x615e"]
+size = Vector2(16, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkp3q"]
+size = Vector2(16, 5)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_eqyss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_xliyi")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.396078, 0.396078, 0.396078, 1)
+polygon = PackedVector2Array(0, -10, 11, -10, 22, -7, 30, 0, 22, 8, 11, 10, 0, 10, -10, 10, -21, 7, -30, 0, -21, -7, -10, -10)
+
+[node name="Beam" type="Area2D" parent="."]
+gravity_space_override = 1
+gravity_point_center = Vector2(2.08165e-12, -1)
+gravity_direction = Vector2(2.08165e-12, -1)
+gravity = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
+position = Vector2(0, 85)
+shape = SubResource("RectangleShape2D_x615e")
+
+[node name="Line2D" type="Line2D" parent="Beam"]
+points = PackedVector2Array(0, 10, 0, 155)
+width = 16.0
+default_color = Color(0, 0.780392, 0.556863, 1)
+
+[node name="BeamSound" type="AudioStreamPlayer2D" parent="Beam"]
+stream = ExtResource("2_a6b5k")
+
+[node name="Chomper" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chomper"]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_lkp3q")
+
+[connection signal="body_entered" from="Beam" to="." method="_on_beam_body_entered"]
+[connection signal="body_exited" from="Beam" to="." method="_on_beam_body_exited"]
+[connection signal="body_entered" from="Chomper" to="." method="_on_chomper_body_entered"]

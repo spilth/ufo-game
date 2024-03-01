@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://beu25vthwnhbe"]
+
+[ext_resource type="Texture2D" uid="uid://bxgy8daf7be5b" path="res://Player_NoAnimation.png" id="1_okjic"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uddxy"]
+radius = 6.0
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hrpd"]
+size = Vector2(2570, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubiv2"]
+size = Vector2(2591, 467)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(128, 121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(8, 21)
+shape = SubResource("CapsuleShape2D_uddxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(8, 20)
+texture = ExtResource("1_okjic")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, 1387)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1275, 20.5)
+shape = SubResource("RectangleShape2D_2hrpd")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0, 0.360784, 0, 1)
+polygon = PackedVector2Array(-7, -6, 2555, -6, 2557, 46, -7, 48)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 527)
+gravity_space_override = 3
+gravity_point_center = Vector2(2.08165e-12, -1)
+gravity_direction = Vector2(2.08165e-12, -1)
+gravity = 2000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1285.5, 223.5)
+shape = SubResource("RectangleShape2D_ubiv2")
