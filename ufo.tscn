@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_eqyss"]
 [ext_resource type="AudioStream" uid="uid://cgbljwl8po6u5" path="res://beam.wav" id="2_a6b5k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xliyi"]
-size = Vector2(20, 30)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt1yd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x615e"]
 size = Vector2(16, 140)
@@ -52,10 +51,10 @@ script = ExtResource("1_eqyss")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 scale = Vector2(1, 2)
-shape = SubResource("RectangleShape2D_xliyi")
+shape = SubResource("CapsuleShape2D_dt1yd")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.396078, 0.396078, 0.396078, 1)
+color = Color(0.116741, 0.116741, 0.116741, 1)
 polygon = PackedVector2Array(0, -10, 11, -10, 22, -7, 30, 0, 22, 8, 11, 10, 0, 10, -10, 10, -21, 7, -30, 0, -21, -7, -10, -10)
 
 [node name="Beam" type="Area2D" parent="."]
@@ -99,10 +98,17 @@ angular_velocity_max = 15.0
 angle_max = 90.0
 color = Color(0, 1, 0, 1)
 
+[node name="HealthLine" type="Line2D" parent="."]
+position = Vector2(0, 2)
+points = PackedVector2Array(0, -2, 0, -6)
+width = 52.0
+default_color = Color(0, 0.839216, 0, 1)
+
 [node name="EnergyLine" type="Line2D" parent="."]
+position = Vector2(0, 2)
 points = PackedVector2Array(0, -2, 0, 2)
 width = 52.0
-default_color = Color(1, 0, 0, 1)
+default_color = Color(0, 0, 1, 1)
 
 [node name="Chomper" type="Area2D" parent="."]
 
