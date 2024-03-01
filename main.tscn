@@ -1933,10 +1933,27 @@ sources/0 = SubResource("TileSetAtlasSource_6ggct")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_top = 175.0
-offset_right = 786.0
-offset_bottom = 655.0
+offset_right = 784.0
+offset_bottom = 656.0
 texture = ExtResource("1_lxoxt")
 stretch_mode = 1
+
+[node name="Humans" type="Node" parent="."]
+
+[node name="Human" parent="Humans" instance=ExtResource("2_qh63w")]
+position = Vector2(270, 597)
+
+[node name="Human2" parent="Humans" instance=ExtResource("2_qh63w")]
+position = Vector2(353, 597)
+
+[node name="Human3" parent="Humans" instance=ExtResource("2_qh63w")]
+position = Vector2(448, 596)
+
+[node name="Human4" parent="Humans" instance=ExtResource("2_qh63w")]
+position = Vector2(532, 595)
+
+[node name="Human5" parent="Humans" instance=ExtResource("2_qh63w")]
+position = Vector2(615, 595)
 
 [node name="UFO" parent="." instance=ExtResource("1_ms4g5")]
 position = Vector2(188, 535)
@@ -1954,21 +1971,6 @@ position = Vector2(188, 535)
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 200
-limit_right = 1280
-limit_bottom = 648
+limit_right = 780
+limit_bottom = 656
 position_smoothing_enabled = true
-
-[node name="Human" parent="." instance=ExtResource("2_qh63w")]
-position = Vector2(270, 597)
-
-[node name="Human2" parent="." instance=ExtResource("2_qh63w")]
-position = Vector2(353, 597)
-
-[node name="Human3" parent="." instance=ExtResource("2_qh63w")]
-position = Vector2(448, 596)
-
-[node name="Human4" parent="." instance=ExtResource("2_qh63w")]
-position = Vector2(532, 595)
-
-[node name="Human5" parent="." instance=ExtResource("2_qh63w")]
-position = Vector2(615, 595)
