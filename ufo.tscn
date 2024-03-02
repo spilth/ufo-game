@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://o22ys2eyidp2"]
+[gd_scene load_steps=9 format=3 uid="uid://o22ys2eyidp2"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_eqyss"]
 [ext_resource type="AudioStream" uid="uid://cgbljwl8po6u5" path="res://beam.wav" id="2_a6b5k"]
+[ext_resource type="AudioStream" uid="uid://dyi06rcb31fkr" path="res://chomper.wav" id="3_ffrlm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt1yd"]
 
@@ -46,6 +47,7 @@ _data = {
 size = Vector2(16, 5)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_eqyss")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -98,16 +100,16 @@ angular_velocity_max = 15.0
 angle_max = 90.0
 color = Color(0, 1, 0, 1)
 
-[node name="HealthLine" type="Line2D" parent="."]
+[node name="LifeLine" type="Line2D" parent="."]
 position = Vector2(0, 2)
 points = PackedVector2Array(0, -2, 0, -6)
-width = 52.0
+width = 48.0
 default_color = Color(0, 0.839216, 0, 1)
 
 [node name="EnergyLine" type="Line2D" parent="."]
 position = Vector2(0, 2)
 points = PackedVector2Array(0, -2, 0, 2)
-width = 52.0
+width = 48.0
 default_color = Color(0, 0, 1, 1)
 
 [node name="Chomper" type="Area2D" parent="."]
@@ -116,6 +118,7 @@ default_color = Color(0, 0, 1, 1)
 position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_lkp3q")
 
-[connection signal="body_entered" from="Beam" to="." method="_on_beam_body_entered"]
-[connection signal="body_exited" from="Beam" to="." method="_on_beam_body_exited"]
+[node name="ChompSound" type="AudioStreamPlayer2D" parent="Chomper"]
+stream = ExtResource("3_ffrlm")
+
 [connection signal="body_entered" from="Chomper" to="." method="_on_chomper_body_entered"]

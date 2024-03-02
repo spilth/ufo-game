@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://yo0w5kvx25xj"]
+
+[ext_resource type="Script" path="res://tank.gd" id="1_dtf1v"]
+[ext_resource type="AudioStream" uid="uid://c23ny72prrkki" path="res://laser.wav" id="2_c2gy5"]
+
+[sub_resource type="Animation" id="Animation_kopwi"]
+resource_name = "cannon_rotate"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cannon:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5708, 3.48787e-16, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83bh5"]
+_data = {
+"cannon_rotate": SubResource("Animation_kopwi")
+}
+
+[node name="Tank" type="Node2D"]
+script = ExtResource("1_dtf1v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Body")
+libraries = {
+"": SubResource("AnimationLibrary_83bh5")
+}
+autoplay = "cannon_rotate"
+
+[node name="Body" type="Polygon2D" parent="."]
+position = Vector2(0, -18)
+color = Color(0, 0.207843, 0, 1)
+polygon = PackedVector2Array(0, -4, -11, 18, 12, 18)
+
+[node name="Cannon" type="Node2D" parent="."]
+position = Vector2(0, -18)
+rotation = 4.71239
+
+[node name="RayCast2D" type="RayCast2D" parent="Cannon"]
+exclude_parent = false
+target_position = Vector2(2.08165e-12, -128)
+collision_mask = 2
+
+[node name="LaserLine" type="Line2D" parent="Cannon"]
+position = Vector2(-18.0001, 35.3736)
+rotation = 1.5708
+scale = Vector2(1.27421, 1)
+points = PackedVector2Array(-127, -18, -27.7611, -18)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="CannonLIne" type="Line2D" parent="Cannon"]
+points = PackedVector2Array(5.72205e-05, -17, 0, 0)
+width = 4.0
+default_color = Color(0.67069, 0.67069, 0.670689, 1)
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_c2gy5")

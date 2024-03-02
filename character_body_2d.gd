@@ -7,12 +7,15 @@ const ENERGY_MAX = 100
 const MOVEMENT_DRAIN_RATE = 5
 
 const LIFE_MAX = 100
+const LIFE_DRAIN_RATE = 10
 
 @onready var beam = $Beam
 @onready var beam_collider = $Beam/CollisionShape2D
 @onready var chomper_collider = $Chomper/CollisionShape2D
 @onready var beam_sound = $Beam/BeamSound
 @onready var energy_line: Line2D = $EnergyLine
+@onready var life_line: Line2D = $LifeLine
+@onready var chomp_sound: AudioStreamPlayer2D = $Chomper/ChompSound
 
 var energy = ENERGY_MAX
 var life = LIFE_MAX
@@ -31,7 +34,6 @@ func _physics_process(delta):
 
 	if Input.is_action_just_released("beam"):
 		beam_sound.stop()
-
 
 	if Input.is_action_pressed("beam") && energy > 0:
 		beaming = true
@@ -69,12 +71,15 @@ func _physics_process(delta):
 	if energy < ENERGY_MAX && not beaming && not moving:
 		energy += ENERGY_RECHARGE_RATE * delta
 
-
-	energy_line.width = 52 * energy / ENERGY_MAX
+	energy_line.width = 48.0  * energy / ENERGY_MAX
+	life_line.width = 48.0 * life / LIFE_MAX
 
 	move_and_slide()
-
+	
+#func take_damage():
+	#life -= LIFE_DRAIN_RATE * delta
 
 func _on_chomper_body_entered(body):
 	if body.is_in_group("Consumable"):
 		body.queue_free()
+		chomp_sound.play()
