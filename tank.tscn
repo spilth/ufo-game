@@ -73,6 +73,3 @@ shape = SubResource("RectangleShape2D_rlx1k")
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_c2gy5")
-
-[connection signal="body_entered" from="Cannon/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Cannon/Area2D" to="." method="_on_area_2d_body_exited"]

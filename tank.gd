@@ -26,11 +26,3 @@ func _process(delta: float) -> void:
 		if laser_sound.playing:
 			laser_sound.stop()
 			animation_player.play()
-
-
-func _on_area_2d_body_entered(body):
-	pass # Replace with function body.
-
-
-func _on_area_2d_body_exited(body):
-	pass # Replace with function body.
