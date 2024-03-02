@@ -20,6 +20,8 @@ const LIFE_DRAIN_RATE = 10
 @onready var life_line: Line2D = $LifeLine
 @onready var chomp_sound: AudioStreamPlayer2D = $Chomper/ChompSound
 
+@export var mothership: Mothership
+
 var energy = ENERGY_MAX
 var life = LIFE_MAX
 
@@ -94,3 +96,4 @@ func _on_chomper_body_entered(body):
 		body.queue_free()
 		chomp_sound.play()
 		add_life(20)
+		mothership.consume_human()

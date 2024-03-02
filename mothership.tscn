@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dquklb2uv0nfb"]
+
+[ext_resource type="Script" path="res://mothership.gd" id="1_3n2hd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r4jq"]
+size = Vector2(206.5, 12)
+
+[node name="Mothership" type="Area2D"]
+script = ExtResource("1_3n2hd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11.75, 5)
+shape = SubResource("RectangleShape2D_4r4jq")
+
+[node name="Ship" type="Polygon2D" parent="."]
+color = Color(0.648078, 0.648078, 0.648078, 1)
+polygon = PackedVector2Array(-115, 0, -98, -23, 68, -23, 92, 0)
+
+[node name="TallyLabel" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -23.0
+offset_right = 8.0
+text = "0/0	"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
