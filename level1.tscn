@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckilmcddrgvpb"]
+[gd_scene load_steps=11 format=3 uid="uid://ckilmcddrgvpb"]
 
 [ext_resource type="AudioStream" uid="uid://dkjira8fxwuir" path="res://Level.mp3" id="1_0y3j5"]
 [ext_resource type="Texture2D" uid="uid://bohyuul0uj4qq" path="res://Background.png" id="1_lxoxt"]
 [ext_resource type="PackedScene" uid="uid://o22ys2eyidp2" path="res://ufo.tscn" id="1_ms4g5"]
+[ext_resource type="Script" path="res://level.gd" id="1_rr5kv"]
 [ext_resource type="PackedScene" uid="uid://wekmmrq5aej3" path="res://human.tscn" id="2_qh63w"]
 [ext_resource type="Texture2D" uid="uid://bpcxnmg8m8uck" path="res://Tileset.png" id="3_bvmyi"]
 [ext_resource type="PackedScene" uid="uid://yo0w5kvx25xj" path="res://tank.tscn" id="5_rnbts"]
@@ -1935,6 +1936,7 @@ sources/0 = SubResource("TileSetAtlasSource_6ggct")
 size = Vector2(782, 20)
 
 [node name="Node" type="Node"]
+script = ExtResource("1_rr5kv")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_0y3j5")
@@ -1996,3 +1998,5 @@ position = Vector2(0, 129)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 position = Vector2(391, 37)
 shape = SubResource("RectangleShape2D_dyck5")
+
+[connection signal="health_depleted" from="UFO" to="." method="_on_ufo_health_depleted"]

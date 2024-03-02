@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://yo0w5kvx25xj"]
+[gd_scene load_steps=6 format=3 uid="uid://yo0w5kvx25xj"]
 
 [ext_resource type="Script" path="res://tank.gd" id="1_dtf1v"]
 [ext_resource type="AudioStream" uid="uid://c23ny72prrkki" path="res://laser.wav" id="2_c2gy5"]
@@ -24,6 +24,9 @@ tracks/0/keys = {
 _data = {
 "cannon_rotate": SubResource("Animation_kopwi")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlx1k"]
+size = Vector2(2, 137)
 
 [node name="Tank" type="Node2D"]
 script = ExtResource("1_dtf1v")
@@ -62,5 +65,14 @@ points = PackedVector2Array(5.72205e-05, -17, 0, 0)
 width = 4.0
 default_color = Color(0.67069, 0.67069, 0.670689, 1)
 
+[node name="Area2D" type="Area2D" parent="Cannon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/Area2D"]
+position = Vector2(-5.53131e-05, -58.5)
+shape = SubResource("RectangleShape2D_rlx1k")
+
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_c2gy5")
+
+[connection signal="body_entered" from="Cannon/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Cannon/Area2D" to="." method="_on_area_2d_body_exited"]

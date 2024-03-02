@@ -1,4 +1,7 @@
+class_name UFO
 extends CharacterBody2D
+
+signal health_depleted
 
 const SPEED = 150.0
 const ENERGY_DRAIN_RATE = 20
@@ -76,10 +79,18 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-#func take_damage():
-	#life -= LIFE_DRAIN_RATE * delta
+func take_damage(amount: float):
+	life -= amount
+	if life <= 0:
+		health_depleted.emit()
+
+func add_life(amount: float):
+	life += amount
+	if life > LIFE_MAX:
+		life = LIFE_MAX
 
 func _on_chomper_body_entered(body):
 	if body.is_in_group("Consumable"):
 		body.queue_free()
 		chomp_sound.play()
+		add_life(20)
