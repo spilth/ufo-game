@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg6yycaa36mmj"]
+[gd_scene load_steps=12 format=3 uid="uid://dg6yycaa36mmj"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_37x64"]
 [ext_resource type="AudioStream" uid="uid://dkjira8fxwuir" path="res://Level.mp3" id="2_47tnp"]
-[ext_resource type="PackedScene" uid="uid://ckilmcddrgvpb" path="res://level1.tscn" id="2_vg8lj"]
 [ext_resource type="Texture2D" uid="uid://bohyuul0uj4qq" path="res://Background.png" id="3_6t5us"]
 [ext_resource type="PackedScene" uid="uid://yo0w5kvx25xj" path="res://tank.tscn" id="4_t0o7e"]
 [ext_resource type="PackedScene" uid="uid://wekmmrq5aej3" path="res://human.tscn" id="5_033wf"]
@@ -1939,7 +1938,7 @@ size = Vector2(782, 20)
 
 [node name="Level" type="Node"]
 script = ExtResource("1_37x64")
-next_level = ExtResource("2_vg8lj")
+next_level = "res://level1.tscn"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_47tnp")
