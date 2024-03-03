@@ -25,6 +25,7 @@ const LIFE_DRAIN_RATE = 10
 @onready var close_right_light = $CloseRightLight
 @onready var far_left_light = $FarLeftLight
 @onready var far_right_light = $FarRightLight
+@onready var nope_sound = $NopeSound
 
 @export var mothership: Mothership
 
@@ -66,6 +67,9 @@ func _physics_process(delta):
 			beam_collider.disabled = true
 			chomper_collider.disabled = true
 	else:
+		if Input.is_action_just_pressed("beam"):
+			nope_sound.play()
+			
 		if too_close.is_colliding():
 			close_left_light.visible = true
 			close_right_light.visible = true
@@ -94,8 +98,8 @@ func _physics_process(delta):
 	if energy < 0:
 		energy = 0
 
-	if energy < ENERGY_MAX && not beaming && not moving:
-		energy += ENERGY_RECHARGE_RATE * delta
+	if not beaming && not moving:
+		add_energy(ENERGY_RECHARGE_RATE * delta)
 
 	energy_line.width = 48.0  * energy / ENERGY_MAX
 	life_line.width = 48.0 * life / LIFE_MAX
@@ -107,6 +111,11 @@ func take_damage(amount: float):
 	if life <= 0:
 		health_depleted.emit()
 
+func add_energy(amount: float):
+	energy += amount
+	if energy > ENERGY_MAX:
+		energy = ENERGY_MAX
+		
 func add_life(amount: float):
 	life += amount
 	if life > LIFE_MAX:
