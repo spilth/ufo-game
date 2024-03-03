@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5iye846d3ji1"]
+[gd_scene load_steps=8 format=3 uid="uid://c5iye846d3ji1"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_bmngc"]
+[ext_resource type="AudioStream" uid="uid://bq1p1fxw0ajwx" path="res://audio/music/menu.mp3" id="2_fdx23"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_2nqwi"]
 device = -1
@@ -30,6 +31,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bmngc")
 first_level = "res://scenes/level1.tscn"
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fdx23")
+autoplay = true
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1
