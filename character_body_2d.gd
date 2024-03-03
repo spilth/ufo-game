@@ -19,6 +19,10 @@ const LIFE_DRAIN_RATE = 10
 @onready var energy_line: Line2D = $EnergyLine
 @onready var life_line: Line2D = $LifeLine
 @onready var chomp_sound: AudioStreamPlayer2D = $Chomper/ChompSound
+@onready var too_close = $TooClose
+@onready var close_enough = $CloseEnough
+@onready var left_light = $LeftLight
+@onready var right_light = $RightLight
 
 @export var mothership: Mothership
 
@@ -34,26 +38,34 @@ func _physics_process(delta):
 	var beaming = false
 	var moving = false
 	
-	if Input.is_action_just_pressed("beam"):
-		beam_sound.play()
+	if not too_close.is_colliding() && close_enough.is_colliding():
+		left_light.visible = false
+		right_light.visible = false
 
-	if Input.is_action_just_released("beam"):
-		beam_sound.stop()
+		if Input.is_action_just_pressed("beam"):
+			beam_sound.play()
 
-	if Input.is_action_pressed("beam") && energy > 0:
-		beaming = true
-		beam.visible = true
-		beam_collider.disabled = false
-		chomper_collider.disabled = false
-		energy -= ENERGY_DRAIN_RATE * delta
+		if Input.is_action_just_released("beam"):
+			beam_sound.stop()
 
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		if Input.is_action_pressed("beam") && energy > 0:
+			beaming = true
+			beam.visible = true
+			beam_collider.disabled = false
+			chomper_collider.disabled = false
+			energy -= ENERGY_DRAIN_RATE * delta
+
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.y = move_toward(velocity.y, 0, SPEED)
+		else:
+			beam.visible = false
+			beam_collider.disabled = true
+			chomper_collider.disabled = true
 	else:
-		beam.visible = false
-		beam_collider.disabled = true
-		chomper_collider.disabled = true
+		left_light.visible = true
+		right_light.visible = true
 
+	if not beaming:
 		var direction = Input.get_axis("left", "right")
 		if direction:
 			moving = true

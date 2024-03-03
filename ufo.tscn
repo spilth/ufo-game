@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://o22ys2eyidp2"]
+[gd_scene load_steps=13 format=3 uid="uid://o22ys2eyidp2"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_eqyss"]
 [ext_resource type="AudioStream" uid="uid://cgbljwl8po6u5" path="res://beam.wav" id="2_a6b5k"]
@@ -7,7 +7,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt1yd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x615e"]
-size = Vector2(16, 140)
+size = Vector2(16, 122)
 
 [sub_resource type="Animation" id="Animation_we22m"]
 resource_name = "beam"
@@ -46,6 +46,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkp3q"]
 size = Vector2(16, 5)
 
+[sub_resource type="Gradient" id="Gradient_tvxf7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srkvw"]
+gradient = SubResource("Gradient_tvxf7")
+width = 32
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_ewfwj"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_715dy"]
+gradient = SubResource("Gradient_ewfwj")
+width = 32
+height = 32
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_eqyss")
@@ -66,11 +81,11 @@ gravity_direction = Vector2(2.08165e-12, -1)
 gravity = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
-position = Vector2(0, 85)
+position = Vector2(0, 76)
 shape = SubResource("RectangleShape2D_x615e")
 
 [node name="Line2D" type="Line2D" parent="Beam"]
-points = PackedVector2Array(0, 10, 0, 155)
+points = PackedVector2Array(0, 10, 0, 137)
 width = 18.419
 default_color = Color(0, 1, 0, 0.498039)
 
@@ -84,9 +99,9 @@ libraries = {
 autoplay = "beam"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Beam"]
-position = Vector2(0, 154)
+position = Vector2(0, 137)
 amount = 32
-lifetime = 0.54
+lifetime = 0.51
 preprocess = 1.0
 speed_scale = 0.5
 local_coords = true
@@ -100,6 +115,15 @@ angular_velocity_max = 15.0
 angle_max = 90.0
 color = Color(0, 1, 0, 1)
 
+[node name="Chomper" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chomper"]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_lkp3q")
+
+[node name="ChompSound" type="AudioStreamPlayer2D" parent="Chomper"]
+stream = ExtResource("3_ffrlm")
+
 [node name="LifeLine" type="Line2D" parent="."]
 position = Vector2(0, 2)
 points = PackedVector2Array(0, -2, 0, -6)
@@ -112,13 +136,26 @@ points = PackedVector2Array(0, -2, 0, 2)
 width = 48.0
 default_color = Color(0, 0, 1, 1)
 
-[node name="Chomper" type="Area2D" parent="."]
+[node name="TooClose" type="RayCast2D" parent="."]
+position = Vector2(-11, 10)
+target_position = Vector2(2.08165e-12, 48)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chomper"]
-position = Vector2(0, 12.5)
-shape = SubResource("RectangleShape2D_lkp3q")
+[node name="CloseEnough" type="RayCast2D" parent="."]
+position = Vector2(11, 10)
+target_position = Vector2(2.08165e-12, 128)
 
-[node name="ChompSound" type="AudioStreamPlayer2D" parent="Chomper"]
-stream = ExtResource("3_ffrlm")
+[node name="LeftLight" type="PointLight2D" parent="."]
+position = Vector2(-30, -0.160155)
+scale = Vector2(0.65625, 0.320311)
+color = Color(1, 0, 0, 1)
+energy = 4.0
+texture = SubResource("GradientTexture2D_srkvw")
+
+[node name="RightLight" type="PointLight2D" parent="."]
+position = Vector2(30, 0)
+scale = Vector2(0.65625, 0.320311)
+color = Color(1, 0, 0, 1)
+energy = 4.0
+texture = SubResource("GradientTexture2D_715dy")
 
 [connection signal="body_entered" from="Chomper" to="." method="_on_chomper_body_entered"]
