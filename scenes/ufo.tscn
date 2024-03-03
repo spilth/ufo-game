@@ -1,12 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://o22ys2eyidp2"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_eqyss"]
-[ext_resource type="AudioStream" uid="uid://cgbljwl8po6u5" path="res://beam.wav" id="2_a6b5k"]
-[ext_resource type="Texture2D" uid="uid://bcrltbh0cgtf5" path="res://ufo.png" id="2_i5urx"]
-[ext_resource type="AudioStream" uid="uid://dyi06rcb31fkr" path="res://chomper.wav" id="3_ffrlm"]
-[ext_resource type="AudioStream" uid="uid://bnqvh1fppr674" path="res://nope.wav" id="5_qm32l"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt1yd"]
+[ext_resource type="Script" path="res://scenes/ufo.gd" id="1_eqyss"]
+[ext_resource type="AudioStream" uid="uid://cgbljwl8po6u5" path="res://audio/effects/beam.wav" id="2_a6b5k"]
+[ext_resource type="Texture2D" uid="uid://bcrltbh0cgtf5" path="res://graphics/ufo.png" id="2_i5urx"]
+[ext_resource type="AudioStream" uid="uid://dyi06rcb31fkr" path="res://audio/effects/chomper.wav" id="3_ffrlm"]
+[ext_resource type="AudioStream" uid="uid://bnqvh1fppr674" path="res://audio/effects/nope.wav" id="5_qm32l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x615e"]
 size = Vector2(16, 122)
@@ -45,6 +43,10 @@ _data = {
 "beam": SubResource("Animation_we22m")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt1yd"]
+radius = 12.0
+height = 33.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkp3q"]
 size = Vector2(16, 5)
 
@@ -66,11 +68,6 @@ height = 32
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_eqyss")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-scale = Vector2(1, 2)
-shape = SubResource("CapsuleShape2D_dt1yd")
 
 [node name="Beam" type="Area2D" parent="."]
 gravity_space_override = 1
@@ -121,6 +118,11 @@ visible = false
 color = Color(0.116741, 0.116741, 0.116741, 1)
 polygon = PackedVector2Array(0, -10, 11, -10, 22, -7, 30, 0, 22, 8, 11, 10, 0, 10, -10, 10, -21, 7, -30, 0, -21, -7, -10, -10)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_dt1yd")
+
 [node name="Chomper" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chomper"]
@@ -133,13 +135,13 @@ stream = ExtResource("3_ffrlm")
 [node name="LifeLine" type="Line2D" parent="."]
 position = Vector2(0, 2)
 points = PackedVector2Array(0, -2, 0, -5)
-width = 48.0
+width = 64.0
 default_color = Color(0, 0.839216, 0, 1)
 
 [node name="EnergyLine" type="Line2D" parent="."]
 position = Vector2(0, 2)
 points = PackedVector2Array(0, -2, 0, 1)
-width = 48.0
+width = 64.0
 default_color = Color(0, 0, 1, 1)
 
 [node name="TooClose" type="RayCast2D" parent="."]

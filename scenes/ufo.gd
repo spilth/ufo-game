@@ -37,6 +37,11 @@ func _ready():
 	beam_collider.disabled = true
 	chomper_collider.disabled = true
 
+	close_left_light.visible = false
+	close_right_light.visible = false
+	far_left_light.visible = false
+	far_right_light.visible = false
+
 func _physics_process(delta):
 	var beaming = false
 	var moving = false
@@ -101,8 +106,8 @@ func _physics_process(delta):
 	if not beaming && not moving:
 		add_energy(ENERGY_RECHARGE_RATE * delta)
 
-	energy_line.width = 48.0  * energy / ENERGY_MAX
-	life_line.width = 48.0 * life / LIFE_MAX
+	energy_line.width = 64.0  * energy / ENERGY_MAX
+	life_line.width = 64.0 * life / LIFE_MAX
 
 	move_and_slide()
 	

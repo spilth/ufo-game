@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c23ny72prrkki"
-path="res://.godot/imported/laser.wav-c143adc7156cb5d8dc7f36c1688b8309.sample"
+uid="uid://dyi06rcb31fkr"
+path="res://.godot/imported/chomper.wav-c6460757bdf3d31a455f84750b4bb297.sample"
 
 [deps]
 
-source_file="res://laser.wav"
-dest_files=["res://.godot/imported/laser.wav-c143adc7156cb5d8dc7f36c1688b8309.sample"]
+source_file="res://audio/effects/chomper.wav"
+dest_files=["res://.godot/imported/chomper.wav-c6460757bdf3d31a455f84750b4bb297.sample"]
 
 [params]
 

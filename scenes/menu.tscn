@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5iye846d3ji1"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_bmngc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_2nqwi"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_rgii1"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_1gy35"]
+events = [SubResource("InputEventKey_2nqwi"), SubResource("InputEventKey_rgii1")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1eonp"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_0p7ls"]
+events = [SubResource("InputEventKey_1eonp")]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bmngc")
+first_level = "res://scenes/level1.tscn"
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.152941, 0.8, 0.87451, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1278.0
+offset_top = 219.0
+offset_right = 1278.0
+offset_bottom = 394.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Universal Fishing Ordinance"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = 111.0
+offset_right = 132.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_1gy35")
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -444.0
+offset_right = 128.0
+offset_bottom = -348.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_0p7ls")
+text = "Quit"
+
+[node name="RichTextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1278.0
+offset_top = -297.0
+offset_right = 1279.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Goal: Abduct enough Humans for the Mothership
+
+AWSD = Fly UFO
+Space = Tractor Beam"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

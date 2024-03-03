@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://braekh1hgo4y7"]
+
+[ext_resource type="Script" path="res://scenes/ending.gd" id="1_fplmb"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_54koj"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_rwyh8"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_nff1j"]
+events = [SubResource("InputEventKey_54koj"), SubResource("InputEventKey_rwyh8")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_oorwb"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_c355a"]
+events = [SubResource("InputEventKey_oorwb")]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fplmb")
+first_level = "res://scenes/level1.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.690196, 0, 1)
+
+[node name="WinLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_top = 136.0
+offset_right = 178.0
+offset_bottom = 309.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 256
+text = "You win!"
+
+[node name="PlayAgainButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_nff1j")
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -579.0
+offset_right = 159.0
+offset_bottom = -483.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_c355a")
+text = "Quit"
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
