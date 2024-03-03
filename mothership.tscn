@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dquklb2uv0nfb"]
+[gd_scene load_steps=4 format=3 uid="uid://dquklb2uv0nfb"]
 
 [ext_resource type="Script" path="res://mothership.gd" id="1_3n2hd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r4jq"]
 size = Vector2(206.5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owdf"]
+size = Vector2(207, 22)
 
 [node name="Mothership" type="Area2D"]
 script = ExtResource("1_3n2hd")
@@ -22,5 +25,11 @@ offset_top = -23.0
 offset_right = 8.0
 text = "0/0	"
 horizontal_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-11.5, -12)
+shape = SubResource("RectangleShape2D_3owdf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

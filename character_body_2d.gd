@@ -21,8 +21,10 @@ const LIFE_DRAIN_RATE = 10
 @onready var chomp_sound: AudioStreamPlayer2D = $Chomper/ChompSound
 @onready var too_close = $TooClose
 @onready var close_enough = $CloseEnough
-@onready var left_light = $LeftLight
-@onready var right_light = $RightLight
+@onready var close_left_light = $CloseLeftLight
+@onready var close_right_light = $CloseRightLight
+@onready var far_left_light = $FarLeftLight
+@onready var far_right_light = $FarRightLight
 
 @export var mothership: Mothership
 
@@ -37,10 +39,12 @@ func _ready():
 func _physics_process(delta):
 	var beaming = false
 	var moving = false
-	
+		
 	if not too_close.is_colliding() && close_enough.is_colliding():
-		left_light.visible = false
-		right_light.visible = false
+		close_left_light.visible = false
+		close_right_light.visible = false
+		far_left_light.visible = false
+		far_right_light.visible = false
 
 		if Input.is_action_just_pressed("beam"):
 			beam_sound.play()
@@ -62,8 +66,13 @@ func _physics_process(delta):
 			beam_collider.disabled = true
 			chomper_collider.disabled = true
 	else:
-		left_light.visible = true
-		right_light.visible = true
+		if too_close.is_colliding():
+			close_left_light.visible = true
+			close_right_light.visible = true
+		
+		if not close_enough.is_colliding():
+			far_left_light.visible = true
+			far_right_light.visible = true
 
 	if not beaming:
 		var direction = Input.get_axis("left", "right")

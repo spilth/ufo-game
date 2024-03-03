@@ -144,17 +144,31 @@ target_position = Vector2(2.08165e-12, 48)
 position = Vector2(11, 10)
 target_position = Vector2(2.08165e-12, 128)
 
-[node name="LeftLight" type="PointLight2D" parent="."]
-position = Vector2(-30, -0.160155)
+[node name="CloseLeftLight" type="PointLight2D" parent="."]
+position = Vector2(-30, 5)
 scale = Vector2(0.65625, 0.320311)
 color = Color(1, 0, 0, 1)
 energy = 4.0
 texture = SubResource("GradientTexture2D_srkvw")
 
-[node name="RightLight" type="PointLight2D" parent="."]
-position = Vector2(30, 0)
+[node name="CloseRightLight" type="PointLight2D" parent="."]
+position = Vector2(30, 5)
 scale = Vector2(0.65625, 0.320311)
 color = Color(1, 0, 0, 1)
+energy = 4.0
+texture = SubResource("GradientTexture2D_715dy")
+
+[node name="FarLeftLight" type="PointLight2D" parent="."]
+position = Vector2(-29, -5)
+scale = Vector2(0.65625, 0.320311)
+color = Color(1, 1, 0, 1)
+energy = 4.0
+texture = SubResource("GradientTexture2D_srkvw")
+
+[node name="FarRightLight" type="PointLight2D" parent="."]
+position = Vector2(29.75, -5)
+scale = Vector2(0.640625, 0.320311)
+color = Color(1, 1, 0, 1)
 energy = 4.0
 texture = SubResource("GradientTexture2D_715dy")
 
