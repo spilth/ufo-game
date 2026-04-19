@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5iye846d3ji1"]
+[gd_scene format=3 uid="uid://c5iye846d3ji1"]
 
-[ext_resource type="Script" path="res://scenes/menu.gd" id="1_bmngc"]
+[ext_resource type="Script" uid="uid://d174pcuer68bq" path="res://scenes/menu.gd" id="1_bmngc"]
 [ext_resource type="AudioStream" uid="uid://bq1p1fxw0ajwx" path="res://audio/music/menu.mp3" id="2_fdx23"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_2nqwi"]
@@ -22,7 +22,7 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_0p7ls"]
 events = [SubResource("InputEventKey_1eonp")]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1532287481]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,11 +32,11 @@ grow_vertical = 2
 script = ExtResource("1_bmngc")
 first_level = "res://scenes/level1.tscn"
 
-[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="." unique_id=808112719]
 stream = ExtResource("2_fdx23")
 autoplay = true
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1302249737]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.152941, 0.8, 0.87451, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=351990471]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -59,7 +59,7 @@ theme_override_font_sizes/font_size = 128
 text = "Universal Fishing Ordinance"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="." unique_id=764453741]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,7 +76,7 @@ theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_1gy35")
 text = "Play"
 
-[node name="QuitButton" type="Button" parent="."]
+[node name="QuitButton" type="Button" parent="." unique_id=998346690]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -93,7 +93,7 @@ theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_0p7ls")
 text = "Quit"
 
-[node name="RichTextLabel" type="Label" parent="."]
+[node name="RichTextLabel" type="Label" parent="." unique_id=1200474799]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
