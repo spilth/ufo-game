@@ -1,15 +1,16 @@
 class_name Mothership
+
 extends Area2D
 
 signal satisfied
 signal completed
 
-@onready var tally_label = $TallyLabel
+@onready var tally_label: Label = $TallyLabel
 
 @export var humans_needed: int = 5
 
-var humans_consumed = 0
-var full = false
+var humans_consumed: int = 0
+var full: bool = false
 
 func _ready():
 	update_label()
@@ -25,11 +26,7 @@ func consume_human():
 func update_label():
 	tally_label.text = str(humans_consumed, "/", humans_needed)
 
-
 func _on_body_entered(body):
 	if body.name == "UFO":
 		if full:
 			completed.emit()
-		else:
-			print('Not full!')
-			

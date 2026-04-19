@@ -1,6 +1,6 @@
 extends Node2D
 
-const DAMAGE = 20
+const DAMAGE: int = 20
 
 @onready var ray_cast_2d: RayCast2D = $Cannon/RayCast2D
 @onready var laser_line: Line2D = $Cannon/LaserLine
@@ -13,7 +13,7 @@ func _ready():
 func _process(delta: float) -> void:
 	if ray_cast_2d.is_colliding():
 		laser_line.visible = true
-		var collider = ray_cast_2d.get_collider()
+		var collider: Object = ray_cast_2d.get_collider()
 		if collider.name == "UFO":
 			collider.take_damage(DAMAGE * delta)
 		
